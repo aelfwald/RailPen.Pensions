@@ -44,6 +44,10 @@ public class PensionService (
 
     public void Transfer(string pensionRef, int fromFundId, int toFundId, decimal amount)
     {
+        if (amount <= 0)
+        {
+            return;
+        }
         Pension pension = builder.Build(pensionRef);
         pension.TransferFunds(fromFundId, toFundId, amount);
         persistenceService.SaveFunds(pension, [fromFundId, toFundId]);
