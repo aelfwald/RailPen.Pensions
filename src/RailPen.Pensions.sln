@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.37111.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RailPen.Pensions.UI", "RailPen.Pensions.UI\RailPen.Pensions.UI.csproj", "{D4B869C8-1264-4CEF-8842-C755F6C6339A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RailPen.Pensions.Infrastructure", "RailPen.Pensions.Infrastructure\RailPen.Pensions.Infrastructure.csproj", "{CEA980F2-3F12-445E-AAC8-600FF8F64E7A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RailPen.Pensions.Application", "RailPen.Pensions.Application\RailPen.Pensions.Application.csproj", "{471EBFB8-574D-4A05-AA38-529C6FD8C2F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RailPen.Pensions.Domain", "RailPen.Pensions.Domain\RailPen.Pensions.Domain.csproj", "{ECC02450-AD65-4394-912B-73892C06AFC2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D4B869C8-1264-4CEF-8842-C755F6C6339A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4B869C8-1264-4CEF-8842-C755F6C6339A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4B869C8-1264-4CEF-8842-C755F6C6339A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4B869C8-1264-4CEF-8842-C755F6C6339A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEA980F2-3F12-445E-AAC8-600FF8F64E7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEA980F2-3F12-445E-AAC8-600FF8F64E7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEA980F2-3F12-445E-AAC8-600FF8F64E7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEA980F2-3F12-445E-AAC8-600FF8F64E7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{471EBFB8-574D-4A05-AA38-529C6FD8C2F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{471EBFB8-574D-4A05-AA38-529C6FD8C2F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{471EBFB8-574D-4A05-AA38-529C6FD8C2F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{471EBFB8-574D-4A05-AA38-529C6FD8C2F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECC02450-AD65-4394-912B-73892C06AFC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECC02450-AD65-4394-912B-73892C06AFC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECC02450-AD65-4394-912B-73892C06AFC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECC02450-AD65-4394-912B-73892C06AFC2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B6B95119-7D38-4F26-A5F9-26E3E25BACF2}
+	EndGlobalSection
+EndGlobal

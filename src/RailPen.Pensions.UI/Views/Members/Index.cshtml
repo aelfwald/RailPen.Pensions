@@ -1,0 +1,33 @@
+﻿@model RailPen.Pensions.UI.Models.Members.MemberModel
+
+<h2 class="display-4">Members</h2>
+<table  class="table table-striped table-bordered table-hover table-sm">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Pension Reference</th>
+            <th scope="col">Date Of Retirement</th>
+            <th scope="col" class="text-end">Number Of Funds</th>
+            <th scope="col" class="text-end">Total Pension Value</th>
+            <th scope="col" class="text-center">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var member in Model.Members)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => member.Name)</td>
+                <td>@Html.DisplayFor(modelItem => member.PensionRef)</td>
+                <td>@Html.DisplayFor(modelItem => member.DateOfRetirement)</td>
+                <td class="text-end">@Html.DisplayFor(modelItem => member.NumberOfFunds)</td>
+                <td class="text-end">@Html.DisplayFor(modelItem => member.TotalPensionValue)</td>
+                <td class="text-center">
+                    <a asp-controller="Pensions" asp-action="Details" asp-route-pensionRef="@member.PensionRef" class="btn btn-primary btn-sm">View</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+

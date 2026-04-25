@@ -1,0 +1,112 @@
+﻿@model RailPen.Pensions.UI.Models.Pensions.TransferModel
+
+<div class="modal fade" id="editModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Transfer Fund</h4>
+                <button type="button" class="close" onclick="closeModal()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <form id="transferForm" asp-controller="Pensions" asp-action="ProcessTransfer" method="post">
+                    @Html.HiddenFor(model => model.PensionRef)
+                    @Html.HiddenFor(model => model.FromFundId)
+                    @Html.HiddenFor(model => model.FundValue)
+
+                    @Html.LabelFor(model => model.FromFundName)
+                    @Html.TextBoxFor(model => model.FromFundName, new { @class = "form-control", @readonly = "readonly" })
+                    <br />
+                    @Html.LabelFor(model => model.FundValue)
+                    @Html.TextBoxFor(model => model.FundValue, "{0:C}", new { @class = "form-control", @readonly = "readonly" })
+                    <br />
+                    @Html.LabelFor(model => model.ToFundId)
+                    @Html.DropDownListFor(model => model.ToFundId, 
+                        new SelectList(Model.AvailableFunds, "Id", "Name"), new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ToFundId, "", new { @class = "text-danger" })
+                    <br />
+                    @Html.LabelFor(model => model.Amount)
+                    @Html.TextBoxFor(model => model.Amount, new { @class = "form-control", @type = "number", @step = "0.01", @min = "0.00", @max = Model.FundValue, @onblur = "enforceMinMaxStep(this)" })
+                    <br />
+
+                    @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
+                </form>
+            </div>      
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="submitTransfer()">Save</button>
+                <button type="button" class="btn btn-secondary" onclick="closeModal()">Close</button>
+            </div>
+        </div>
+
+        <div id="liveAlertPlaceholder"></div>
+    </div>
+</div>
+
+@* <script>
+    function submitTransfer() {
+        var form = $('#transferForm');
+
+        $.ajax({
+            url: form.attr('action'),
+            type: 'POST',
+            data: form.serialize(),
+            success: function(response) {
+                if (response.success) {
+                    $('#editModal').modal('hide');
+                    location.reload();
+                }
+                else {
+                    alert(response.message);
+                }
+            },
+            error: function(xhr) {
+                alert('An error occurred while processing the transfer.');
+            }
+        });
+    }
+
+    function closeModal() {
+        $('#editModal').modal('hide');
+    }
+
+    function enforceMinMaxStep(el) {
+      var min = parseFloat(el.min);
+      var max = parseFloat(el.max);
+      var step = parseFloat(el.step);
+
+      // If blank or empty, 
+      if (el.value == "" || el.value == null) {
+        el.value = 0;
+        return;
+      }
+
+      var value = parseFloat(el.value);
+
+      if (!isNaN(value)) {
+        // Enforce min
+        if (value < min) {
+          el.value = min.toFixed(2);
+          return;
+        }
+
+        // Enforce max
+        if (value > max) {
+          el.value = max.toFixed(2);
+          return;
+        }
+
+        // Enforce step - round to nearest valid step value
+        if (step && !isNaN(step)) {
+          var steppedValue = Math.round(value / step) * step;
+          // Round to avoid floating point precision issues
+          el.value = steppedValue.toFixed(2);
+        }
+      } else {
+        // If invalid value, set to min
+        el.value = min.toFixed(2);
+      }
+    }
+
+    $('#editModal').on('hidden.bs.modal', function () {
+        $('#modalWrapper').empty();
+    });
+</script> *@
