@@ -10,7 +10,7 @@ public class Fund
     public string RiskLevel { get; internal set; } = string.Empty;
     public decimal PricePerUnit { get; internal set; }
     public decimal TotalUnits { get; internal set; }
-    public decimal CurrentValue => PricePerUnit * TotalUnits;
+    public decimal CurrentValue => Math.Round(PricePerUnit * TotalUnits, 2, MidpointRounding.ToEven);
     public bool IsInvested => TotalUnits > 0;
     public void Sell(decimal amount)
     {

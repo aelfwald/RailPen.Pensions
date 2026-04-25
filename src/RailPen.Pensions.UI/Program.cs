@@ -17,6 +17,7 @@ builder.Services.AddSingleton<IModelBuilder, ModelBuilder>();
 builder.Services.AddSingleton<IMemberService, MemberService>();
 builder.Services.AddSingleton<IPensionService, PensionService>();
 builder.Services.AddSingleton<IPensionDomainObjectBuilder, PensionDomainObjectBuilder>();
+builder.Services.AddSingleton<IPersistenceService, PersistenceService>();
 
 // Register domain services
 builder.Services.AddSingleton<IPensionFactory, PensionFactory>();

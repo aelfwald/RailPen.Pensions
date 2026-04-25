@@ -4,6 +4,6 @@ namespace RailPen.Pensions.Application.Services;
 
 public interface  IPensionService
 {
-    PensionDetailsDto GetForPension(string pensionRef); 
+    PensionDetailsDto GetPension(string pensionRef); 
     void Transfer(string pensionRef, int fromFundId, int toFundId, decimal amount);
 }

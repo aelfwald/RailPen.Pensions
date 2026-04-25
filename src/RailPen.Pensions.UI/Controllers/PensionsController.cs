@@ -12,7 +12,7 @@ public class PensionsController(
 {
     public ActionResult Details(string pensionRef)
     {
-        PensionDetailsDto pensionDetails = pensionService.GetForPension(pensionRef);
+        PensionDetailsDto pensionDetails = pensionService.GetPension(pensionRef);
         PensionDetailsModel pensionDetailsVm = viewModelBuilder.BuildPensionDetailsModel(pensionDetails);
         return View(pensionDetailsVm);
     }
@@ -20,7 +20,7 @@ public class PensionsController(
     [Route("{pensionRef}/fund/{fundId}")]
     public PartialViewResult Transfer(string pensionRef, int fundId)
     {
-        PensionDetailsDto pensionDetails = pensionService.GetForPension(pensionRef);
+        PensionDetailsDto pensionDetails = pensionService.GetPension(pensionRef);
         TransferModel transferModel = viewModelBuilder.BuildTransferModel(pensionDetails, fundId);
         return PartialView(transferModel);
     }

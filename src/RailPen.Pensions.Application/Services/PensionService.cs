@@ -1,17 +1,15 @@
 ﻿using RailPen.Pensions.Application.Builders;
-using RailPen.Pensions.Application.DataObjects;
 using RailPen.Pensions.Application.Dto;
-using RailPen.Pensions.Application.Repositories;
 using RailPen.Pensions.Domain.Pension;
 
 namespace RailPen.Pensions.Application.Services;
 
 public class PensionService (
-    IMemberFundRepository memberFundRepository,
-    IPensionDomainObjectBuilder builder)
+    IPensionDomainObjectBuilder builder,
+    IPersistenceService persistenceService)
     : IPensionService
 {
-    public PensionDetailsDto GetForPension(string pensionRef)
+    public PensionDetailsDto GetPension(string pensionRef)
     {
         Pension pension = builder.Build(pensionRef);
         PensionDetailsDto pensionDetails = new PensionDetailsDto
@@ -48,32 +46,6 @@ public class PensionService (
     {
         Pension pension = builder.Build(pensionRef);
         pension.TransferFunds(fromFundId, toFundId, amount);
-
-        decimal toFundUnits = pension.GetFundUnits(toFundId);
-        int? toFundMemberFundId = pension.GetMemberFundIdForFund(toFundId);
-        if (!toFundMemberFundId.HasValue)
-        {
-            memberFundRepository.Add(new MemberFundDto()
-            {
-                FundId = toFundId,
-                MemberId = pension.Member.Id,
-                Units = toFundUnits
-            });
-        }
-        else
-        {
-            memberFundRepository.Update(toFundMemberFundId.Value, toFundUnits);
-        }
-
-        decimal fromMemberFundUnits = pension.GetFundUnits(fromFundId);
-        int fromMemberFundId = pension.GetMemberFundIdForFund(fromFundId)!.Value;
-        if (fromMemberFundUnits == 0)
-        {
-            memberFundRepository.Delete(fromMemberFundId);
-        }
-        else
-        {
-            memberFundRepository.Update(fromMemberFundId, fromMemberFundUnits);
-        }
+        persistenceService.SaveFunds(pension, [fromFundId, toFundId]);
     }
 }
